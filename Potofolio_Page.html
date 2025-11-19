@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class"
+        }
+    </script>
+    <title>Portofolio Page</title>
+</head>
+
+<body class="dark:bg-[#2D4F2B] bg-[#708A58]">
+    <nav class="flex justify-center max-w-screen m-4">
+        <ul class="flex space-x-6 text-white-600 font-medium dark:text-white">
+            <li>
+                <a href="Home_Page.html" class="hover:text-[#FFB823]">Home</a>
+            </li>
+
+            <li>
+                <a href="Map_Page.html" class="hover:text-[#FFB823]">Map</a>
+            </li>
+            <li>
+                <a href="Potofolio_Page.html" class="hover:text-[#FFB823]">Portofolio</a>
+            </li>
+            <li>
+                <button href="#" onclick="changeTheme()" class="hover:text-[#FFB823]">Dark/Light</button>
+            </li>
+    </nav>
+    <h1 class="dark:text-white text-black-600 font-bold text-center font-serif mb-4">Profil Singkat</h1>
+
+    <section class=" bg-[#FFF1CA] rounded-lg grid grid-cols-1 md:grid-cols-2 items-center px-4 py-8">
+        <div>
+            <p class="text-black-600 ">Halo, Nama ku Aina Nurfiani</p> <br>
+            <h2 class="text-black-600 font-bold leading-tight text-justify">
+                Aku lulusan S1 Perencanaan Wilayah dan Kota Universitas Brawijaya. Selama kuliah, aku terbiasa
+                mengerjakan analisis spasial, bikin dokumen perencanaan, sampai ngolah data pakai software kayak ArcMAP,
+                QGIS, SketchUp, dan Microsoft Office.
+                Di luar kelas, aku juga aktif di organisasi jurusan dan beberapa kali dipercaya jadi ketua bidang di
+                acara kampus.
+            </h2>
+            <p class="mt-4 text-black-600 text-justify">
+                Dari situ aku belajar banyak soal kerja tim, mikir strategis, dan adaptasi di situasi yang dinamis.
+                Selain itu, aku juga punya rasa penasaran tinggi dan suka belajar hal-hal baru, jadi selalu semangat
+                buat berkembang dan menambah pengalaman. 🚀
+            </p>
+        </div>
+        <div class="flex justify-center">
+            <img src="/Final Project/coding/assets/WhatsApp Image 2025-08-27 at 21.11.21_207c4934.jpg" alt="Foto Profil"
+                class="rounded-lg h-72" />
+        </div>
+    </section>
+
+    <h1 class="dark:text-white text-black-600 font-bold text-center font-serif mb-4 mt-4">Latar Belakang Pendidikan</h1>
+    <section class=" bg-[#FFF1CA] rounded-lg grid grid-cols-2 md:grid-cols-2 gap-8 items-center px-8 py-16">
+        <div class="bg-[#FFB823] rounded-lg p-6 text-black-600 font-medium text-center"> S1 Universitas Brawijaya</div>
+        <div class="bg-[#FFB823] rounded-lg p-6 text-black-600 font-medium text-center">SMA 4 Negeri Tambun Selatan
+        </div>
+
+        </div>
+    </section>
+
+    <h1 class="dark:text-white text-black-600 font-bold text-center font-serif mb-4 mt-4">Pengalaman Kerja</h1>
+    <section class=" bg-[#FFF1CA] rounded-lg grid grid-cols-3 md:grid-cols-3 gap-8 items-center px-8 py-16">
+        <div class="bg-[#FFB823] rounded-lg p-6 text-black-600">
+            <h2 class="font-mono text-center font-medium m-2"> KLHS WP CICALENGKA</h2>
+            <img src="./KLHS CICALENGKA.png" alt="Dokumentasi KLHS">
+            <p class="font-serif text-justify m-2"> Waktu magang aku ditempatin di tim laporan, tapi tetap juga harus
+                ngolah data di ArcGIS buat dapetin hasil analisis.
+                Jobdesc-ku waktu itu nyusun Bab 2 overlay KRP berdampak, bikin analisis DPSIR, sama nyusun rekomendasi.
+            </p>
+        </div>
+        <div class="bg-[#FFB823] rounded-lg p-6 text-black-600">
+            <h2 class="font-mono text-center font-medium m-2"> KLHS RDTR KOTA BLITAR</h2>
+            <img src="./KLHS BLITAR.png">
+            <p class="font-serif text-justify m-2">Di proyek ini, aku berperan sebagai freelancer untuk menyusun dokumen
+                presentasi Konsultasi Publik sekaligus menyusun dokumen penjamin kualitas.</p>
+        </div>
+        <div class="bg-[#FFB823] rounded-lg p-6 text-black-600">
+            <h2 class="font-mono text-center font-medium m-2">Studio Perencanaan Wilayah dan Kota</h2>
+            <img src="./Light Blue Modern Minimalist Holiday Photo Collage Instagram Post (1).png"
+                alt="Dokumentasi Studio Perencanaan Wilayah dan Kota">
+            <p class="font-serif text-justify m-2">Selama kuliah yang paling berkesan itu tugas akhir studio Perencanaan
+                Wilayah.
+                Kebetulan kelompokku dapet sektor pariwisata, jadi rasanya seru banget kayak lagi jalan-jalan, hehehe.
+                Hasil akhirnya berupa dokumen Rencana Strategis Sektor Pariwisata.</p>
+        </div>
+        </div>
+    </section>
+
+    <h1 class="dark:text-white text-black-600 font-bold text-center font-serif mb-4 mt-4"> Kotak Pesan</h1>
+    <section>
+        <label for="nama" class="font-mono dark:text-white text-black-600 font-bold">Nama</label>
+        <input id="nama" name="nama" type="text" />
+        <br />
+        <br />
+        <label for="email" class="font-mono dark:text-white text-black-600 font-bold">Email</label>
+        <input id="email" name="email" type="email" />
+        <br />
+        <br />
+        <label for="kritik" class="font-mono dark:text-white text-black-600 font-bold">Pesan</label>
+        <textarea id="kritik" name="kritik" placeholder="Pesan yang mau dikasih ke aku"></textarea>
+        <br />
+        <br />
+        <button onclick="onSubmit()"
+            class="bg-[#FFF1CA] dark:bg-[#FFB823] font-mono dark:text-white text-black-600 font-bold m-2">Submit</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th> Kritik dan Saran</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
+
+    </section>
+
+    <section>
+        <footer class="bg-[#FFF1CA] text-black py-2 mt-auto">
+            <div class="mx-auto text-center">
+                <p class="text-sm">&copy; 2025 Aina Nurfiani. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+
+        } else {
+            if (window.matchMedia("(prefers-color-scheme:dark)").matches) {
+                document.documentElement.classList.add("dark")
+            }
+
+        }
+
+        function changeTheme() {
+            if (document.documentElement.classList.contains("dark")) {
+                document.documentElement.classList.remove("dark")
+                localStorage.theme = "light"
+            } else {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = "dark"
+            }
+
+        }
+    </script>
+
+    <script>
+        function onSubmit() {
+            const name = document.getElementById("nama").value
+            const email = document.getElementById("email").value
+            const kritik_saran = document.getElementById("kritik").value
+
+            if (name.length > 0 && email.length > 0 && kritik_saran.length > 0) {
+                postSaran(name, email, kritik_saran)
+            } else {
+                alert("Hayooo ga boleh kosong!")
+            }
+
+        }
+
+        function postSaran(name, email, kritik_saran) {
+            console.log(name, email, kritik_saran)
+            fetch("https://68d14585e6c0cbeb39a42d4d.mockapi.io/webgis/saran/v3", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, kritik_saran })
+            })
+                .then(response => response.json())
+                .then(() => { getData() })
+                .catch(error => console.log(error))
+        }
+
+        function getData() {
+
+            const tableBody = document.getElementById("table-body")
+            tableBody.innerHTML = ''
+            fetch("https://68d14585e6c0cbeb39a42d4d.mockapi.io/webgis/saran/v3", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            })
+                .then(response => response.json())
+                .then((data) =>
+
+                    data.forEach(data => {
+                        const row = document.createElement("tr")
+                        const nameCell = document.createElement("td")
+
+                        nameCell.textContent = data.name
+                        const emailCell = document.createElement("td")
+                        emailCell.textContent = data.email
+                        const kritikCell = document.createElement("td")
+                        kritikCell.textContent = data.kritik_saran
+
+                        row.appendChild(nameCell)
+                        row.appendChild(emailCell)
+                        row.appendChild(kritikCell)
+                        tableBody.appendChild(row)
+                    }
+
+                    )
+
+                )
+                .catch(error => console.log(error))
+
+        }
+    </script>
+</body>
+
+</html>
