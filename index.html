@@ -446,11 +446,9 @@
             // update legend dengan daftar 'checked'
             updateLegend(checked);
         }); // end form submit
-        // ======= AKHIR BAGIAN PETA/LAZIM =======
 
         // ===== BUFFER: klik Properti -> buat buffer -> cek layer lain =====
 
-        // hapus buffer lama
         function removeBuffer() {
             if (map.getLayer("buffer-layer")) map.removeLayer("buffer-layer");
             if (map.getSource("buffer-src")) map.removeSource("buffer-src");
