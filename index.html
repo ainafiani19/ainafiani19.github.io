@@ -213,14 +213,15 @@ justify-start md:justify-end">
 max-w-[90vw] md:max-w-none
 bg-[#F7FBFA] text-[#355F5B]
 p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
-        <h1 id="legend-title" class="font-bold text-black">LEGENDA</h1>
+
+        <div id="legend-header" class="flex justify-between items-center cursor-pointer select-none">
+            <h1 class="font-bold text-black">LEGENDA</h1>
+            <span id="legend-toggle" class="text-sm">▼</span>
+        </div>
+
         <div id="legend-items"></div>
     </div>
-    <footer class="bg-[#A8E6CF] text-[#355F5B] py-2 mt-auto">
-        <div class="mx-auto text-center">
-            <p class="text-sm">&copy; 2025 Aina Nurfiani. All Rights Reserved.</p>
-        </div>
-    </footer>
+
 
 
     <script>
@@ -466,6 +467,24 @@ p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
             // update legend dengan daftar 'checked'
             updateLegend(checked);
         }); // end form submit
+        // ===== Toggle legenda (minimize / expand) =====
+        let legendVisible = true;
+
+        document.getElementById("legend-header").addEventListener("click", () => {
+            legendVisible = !legendVisible;
+
+            const items = document.getElementById("legend-items");
+            const icon = document.getElementById("legend-toggle");
+
+            if (legendVisible) {
+                items.style.display = "block";
+                icon.textContent = "▼";
+            } else {
+                items.style.display = "none";
+                icon.textContent = "▲";
+            }
+        });
+
 
         // ===== BUFFER: klik Properti -> buat buffer -> cek layer lain =====
 
