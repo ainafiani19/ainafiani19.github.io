@@ -292,6 +292,15 @@ p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
                 panel.classList.add("-right-full");
             }
         }
+        // tombol X (close) khusus mobile
+        const closeBtn = document.getElementById("closePanel");
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                panel.classList.remove("right-0");
+                panel.classList.add("-right-full");
+            });
+        }
 
 
 
