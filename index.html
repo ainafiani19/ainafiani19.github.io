@@ -31,34 +31,42 @@
 
 </head>
 
-<body class=" min-h-screen w-full bg-[#F5F9E9]">
+<body class="min-h-screen w-full
+bg-gradient-to-br from-[#A8E6CF] via-[#BEE7E8] to-[#5FB3B3]">
 
     <!-- NAVBAR -->
-    <nav class="w-1full flex flex-wrap items-center justify-between gap-4 
-    bg-[#F1F3E0] dark:bg-[#24322E]
-    text-black dark:text-[#E9EFE5]
-    px-4 py-4 sticky top-0 z-10">
+    <nav class="w-full flex flex-col md:flex-row
+items-start md:items-center
+justify-between gap-4
+bg-gradient-to-r from-[#A8E6CF] via-[#BEE7E8] to-[#5FB3B3]
+dark:from-[#1F3F3B] dark:via-[#2F7F7B] dark:to-[#1F3F3B]
+text-[#355F5B] dark:text-[#E9EFE5]
+px-4 py-4 sticky top-0 z-10 backdrop-blur-md">
 
         <div class="flex items-center gap-3">
             <a href="Home_Page.html" id="home"
-                class="p-2 bg-[#345995] dark:bg-[#2E5A94] rounded  hover:bg-blue-300  dark:hover:bg-blue-200 transition active:scale-95">
+                class="p-2 bg-[#5FB3B3] dark:bg-[#2F7F7B] rounded  hover:bg-[#A8E6CF]  dark:hover:bg-[#A8E6CF] transition active:scale-95">
                 <img src="assets/FindNest.svg" class="w-10 h-10 object-contain" alt="FindNest logo">
             </a>
 
-            <div class="text-base font-bold flex items-center gap-1 cursor-pointer">
+            <div class="text-base font-bold flex items-center gap-1 cursor-pointer
+            text-[#2F7F7B] dark:text-[#2F7F7B] drop-shadow-sm">
                 FindNest
             </div>
+
         </div>
 
-        <form id="formKecamatan" class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+        <form id="formKecamatan" class="flex flex-col sm:flex-row
+items-stretch sm:items-center
+gap-3 w-full md:w-auto">
 
             <!-- Pilih Kecamatan -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 ">
                 <label for="kecamatan" class="font-semibold text-[#F5F9E9] whitespace-nowrap">
                     Pilih Kecamatan:
                 </label>
                 <select name="kecamatan" id="kecamatan"
-                    class="text-black bg-white px-3 py-2 rounded shadow-sm border border-gray-300 focus:ring-2 focus:ring-[#57A773] focus:border-[#57A773]">
+                    class="w-full sm:w-auto text-black bg-white px-3 py-2 rounded shadow-sm border border-gray-300 focus:ring-2 focus:ring-[#5FB3B3] focus:border-[#5FB3B3]">
                     <option value="">SEMUA KECAMATAN</option>
                     <option value="BABELAN">BABELAN</option>
                     <option value="BOJONGMANGU">BOJONGMANGU</option>
@@ -88,8 +96,8 @@
 
 
             <!-- Layer Checkbox Custom -->
-            <div class="relative inline-block w-56" x-data="{ open: false }">
-                <div class="border border-gray-300 bg-white text-black px-3 py-2 rounded shadow-sm cursor-pointer select-none hover:border-[#57A773]"
+            <div class="relative inline-block w-full sm:w-56" x-data="{ open: false }">
+                <div class="border border-gray-300 bg-white text-black px-3 py-2 rounded shadow-sm cursor-pointer select-none hover:border-[#5FB3B3]"
                     @click="open = !open">
                     Pilih Layer
                 </div>
@@ -97,31 +105,33 @@
                 <div x-show="open"
                     class="absolute mt-1 w-full bg-white border border-gray-300 rounded shadow-md p-2 z-10 max-h-48 overflow-y-auto">
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Properti" class="accent-[#57A773]"> Properti
+                        <input type="checkbox" value="Properti" class="accent-[#5FB3B3]"> Properti
                     </label>
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Pendidikan" class="accent-[#57A773]"> Pendidikan
+                        <input type="checkbox" value="Pendidikan" class="accent-[#5FB3B3]"> Pendidikan
                     </label>
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Kesehatan" class="accent-[#57A773]"> Kesehatan
+                        <input type="checkbox" value="Kesehatan" class="accent-[#5FB3B3]"> Kesehatan
                     </label>
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Transportasi" class="accent-[#57A773]"> Transportasi
+                        <input type="checkbox" value="Transportasi" class="accent-[#5FB3B3]"> Transportasi
                     </label>
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Banjir" class="accent-[#57A773]"> Kebencanaan
+                        <input type="checkbox" value="Banjir" class="accent-[#5FB3B3]"> Kebencanaan
                     </label>
                     <label class="flex items-center gap-2 py-1 px-2 hover:bg-gray-100 text-black">
-                        <input type="checkbox" value="Sampah" class="accent-[#57A773]"> Tempat Pengolahan Sampah
+                        <input type="checkbox" value="Sampah" class="accent-[#5FB3B3]"> Tempat Pengolahan Sampah
                     </label>
                 </div>
             </div>
 
             <input type="submit" value="Submit"
-                class="px-4 py-2 bg-[#57A773] text-white rounded shadow-md  dark:hover:bg-blue-200 active:scale-95 cursor-pointer">
+                class="px-4 py-2 bg-[#5FB3B3] text-white rounded shadow-md  dark:hover:bg-blue-200 active:scale-95 cursor-pointer">
         </form>
 
-        <div id="tools" class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+        <div id="tools" class="flex flex-row items-center gap-2
+w-full md:w-auto
+justify-start md:justify-end">
             <button id="layer-variabel"
                 class="p-2 bg-[#345995] dark:bg-[#2E5A94] rounded  hover:bg-blue-300 dark:hover:bg-blue-200 transition active:scale-95">
                 <img src="assets/layer-svgrepo-com.svg" class="w-5 h-5 invert brightness-0">
@@ -142,7 +152,12 @@
 
     <!-- SIDE PANEL -->
     <div id="sidePanel"
-        class="fixed top-16 -right-1/4 w-1/4 h-[calc(100vh-4rem)] bg-white dark:bg-[#1f2937] shadow-lg transition-all duration-300 z-[9999] p-4 overflow-y-auto">
+        class="fixed top-16
+-right-full md:-right-1/4
+w-full md:w-1/4
+h-[calc(100vh-4rem)]
+bg-[#F7FBFA] dark:bg-[#1F3F3B]
+shadow-lg transition-all duration-300 z-[9999] p-4 overflow-y-auto">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Layer Tools</h3>
         </div>
@@ -158,7 +173,7 @@
                     aria-label="Radius buffer dalam meter" />
 
                 <button id="applyBuffer"
-                    class="px-3 py-2 bg-[#345995] text-white rounded hover:bg-[#57A773] active:scale-95">
+                    class="px-3 py-2 bg-[#345995] text-white rounded hover:bg-[#5FB3B3] active:scale-95">
                     Terapkan
                 </button>
 
@@ -192,14 +207,17 @@
     </div>
 
     <!--MAP-->
-    <div id="map" class="w-full h-[calc(100vh-60px)] bg-[#157145] dark:bg-[#13201C]"></div>
+    <div id="map" class="w-full h-[calc(100vh-120px)] md:h-[calc(100vh-60px)]
+ bg-[#BEE7E8] dark:bg-[#1F3F3B]"></div>
     <!--Legenda-->
-    <div id="legend" class="absolute bottom-4 left-4 bg-white
-    text-black p-4 rounded shadow-md space-y-2 z-[9999]">
+    <div id="legend" class="absolute bottom-4 left-4
+max-w-[90vw] md:max-w-none
+bg-[#F7FBFA] text-[#355F5B]
+p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
         <h1 id="legend-title" class="font-bold text-black">LEGENDA</h1>
         <div id="legend-items"></div>
     </div>
-    <footer class="bg-[#FFF1CA] text-black py-2 mt-auto">
+    <footer class="bg-[#A8E6CF] text-[#355F5B] py-2 mt-auto">
         <div class="mx-auto text-center">
             <p class="text-sm">&copy; 2025 Aina Nurfiani. All Rights Reserved.</p>
         </div>
@@ -499,7 +517,7 @@
                 id: "buffer-layer",
                 type: "fill",
                 source: "buffer-src",
-                paint: { "fill-color": "#00ff00", "fill-opacity": 0.25 }
+                paint: { "fill-color": "#5FB3B3", "fill-opacity": 0.25 }
             });
 
             // zoom to buffer (opsional)
