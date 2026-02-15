@@ -157,9 +157,13 @@ justify-start md:justify-end">
   h-[calc(100vh-4rem)]
   bg-[#F7FBFA] dark:bg-[#1F3F3B]
   shadow-lg transition-all duration-300 z-[9999] p-4 overflow-y-auto">
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Layer Tools</h3>
+            <button id="closePanel" class="md:hidden text-xl font-bold text-gray-600 hover:text-black">
+                ✕
+            </button>
         </div>
+
         <!-- --- Buffer (jarak meter) UI untuk klik Properti --- -->
         <div id="buffer-ui" class="mt-4">
             <label for="bufferRadius" class="block font-medium text-black dark:text-white">
@@ -281,6 +285,13 @@ p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
                 panel.classList.add("right-0");
             }
         });
+        // ===== helper: tutup side panel khusus mobile =====
+        function closeSidePanelOnMobile() {
+            if (window.innerWidth < 768) { // mobile only
+                panel.classList.remove("right-0");
+                panel.classList.add("-right-full");
+            }
+        }
 
 
 
