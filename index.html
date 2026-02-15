@@ -300,10 +300,12 @@ p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
         }
 
         // ======= AWAL BAGIAN PETA/LAZIM (ganti bagian lama yang memiliki bug) =======
-        let selectedPropertyPoint = null;
 
         // tempat menyimpan geojson tiap layer supaya mudah diakses
         const layerData = {};
+
+        let selectedPropertyPoint = null;
+
 
         // add kecamatan layer on load (perbaikan: jangan panggil enablePopupForLayer tanpa argumen)
         map.on("load", () => {
@@ -469,48 +471,53 @@ p-3 md:p-4 rounded shadow-md space-y-2 z-[9999]">
         // ===== BUFFER: klik Properti -> buat buffer -> cek layer lain =====
 
         // hapus buffer lama
-       function removeBuffer() {
-    if (map.getLayer("buffer-layer")) map.removeLayer("buffer-layer");
-    if (map.getSource("buffer-src")) map.removeSource("buffer-src");
-}
-
-function tampilkanHasilBuffer(bufferPoly) {
-    const checkableLayers = ["Pendidikan", "Kesehatan", "Transportasi", "Sampah"];
-    const hasil = [];
-
-    checkableLayers.forEach(layerName => {
-        const data = layerData[layerName];
-        if (!data?.features) return;
-
-        data.features.forEach(f => {
-            const pt = turf.point(f.geometry.coordinates);
-            if (turf.booleanPointInPolygon(pt, bufferPoly)) {
-                const nama =
-                    f.properties.NAMA ||
-                    f.properties.Nama ||
-                    f.properties.nama ||
-                    "Tidak ada nama";
-                hasil.push(`${layerName} → ${nama}`);
-            }
-        });
-    });
-
-    const out = document.getElementById("isochroneResult");
-    out.innerHTML = hasil.length
-        ? hasil.map(h => `<li>${escapeHTML(h)}</li>`).join("")
-        : "<li>Tidak ada titik dalam radius ini.</li>";
-}
-
+        function removeBuffer() {
+            if (map.getLayer("buffer-layer")) map.removeLayer("buffer-layer");
+            if (map.getSource("buffer-src")) map.removeSource("buffer-src");
+        }
 
         // tombol Hapus buffer
         document.getElementById("clearBuffer").addEventListener("click", () => {
             removeBuffer();
-            document.getElementById("isochroneResult").innerHTML = "";
             selectedPropertyPoint = null;
+            document.getElementById("isochroneResult").innerHTML = "";
         });
+        function tampilkanHasilBuffer(bufferPoly) {
+            const checkableLayers = ["Pendidikan", "Kesehatan", "Transportasi", "Sampah"];
+            const hasil = [];
+
+            checkableLayers.forEach(layerName => {
+                const data = layerData[layerName];
+                if (!data?.features) return;
+
+                data.features.forEach(f => {
+                    const pt = turf.point(f.geometry.coordinates);
+                    if (turf.booleanPointInPolygon(pt, bufferPoly)) {
+                        const nama =
+                            f.properties.NAMA ||
+                            f.properties.Nama ||
+                            f.properties.nama ||
+                            "Tidak ada nama";
+                        hasil.push(`${layerName} → ${nama}`);
+                    }
+                });
+            });
+
+            const out = document.getElementById("isochroneResult");
+            out.innerHTML = hasil.length
+                ? hasil.map(h => `<li>${escapeHTML(h)}</li>`).join("")
+                : "<li>Tidak ada titik dalam radius ini.</li>";
+        }
 
 
-        // klik di tombol Terapkan (opsional, di sini hanya update radius)
+        map.on("click", "Properti", function (e) {
+            const feat = e.features && e.features[0];
+            if (!feat) return;
+
+            selectedPropertyPoint = feat;
+
+            alert("Properti dipilih. Klik 'Terapkan' untuk membuat buffer.");
+        });
         document.getElementById("applyBuffer").addEventListener("click", () => {
             if (!selectedPropertyPoint) {
                 alert("Klik salah satu titik Properti terlebih dahulu.");
@@ -547,80 +554,14 @@ function tampilkanHasilBuffer(bufferPoly) {
                 }
             });
 
-            // zoom ke buffer
-            const bbox = turf.bbox(bufferPoly);
-            map.fitBounds(bbox, { padding: 40, maxZoom: 15 });
+            try {
+                const bbox = turf.bbox(bufferPoly);
+                map.fitBounds(bbox, { padding: 40, maxZoom: 15 });
+            } catch (e) { }
 
             tampilkanHasilBuffer(bufferPoly);
         });
 
-
-        // event: klik properti — hanya berfungsi kalau layer Properti sudah dimuat
-        map.on("click", "Properti", function (e) {
-            const feat = e.features && e.features[0];
-            if (!feat) return;
-
-            selectedPropertyPoint = feat;
-
-            alert("Properti dipilih. Klik 'Terapkan' untuk membuat buffer.");
-        });
-
-
-        // baca radius terbaru dari input
-        bufferRadius = Number(document.getElementById("bufferRadius").value || 0);
-
-        // pastikan layer Properti benar-benar tersedia
-        if (!layerData.Properti) {
-            console.warn("Layer Properti belum dimuat. Centang layer Properti di form lalu submit.");
-            alert("Layer Properti belum dimuat. Centang 'Properti' dan tekan Submit terlebih dahulu.");
-            return;
-        }
-
-        removeBuffer();
-
-        const coords = feat.geometry.coordinates;
-        const center = turf.point(coords);
-        const bufferPoly = turf.buffer(center, bufferRadius, { units: "meters" });
-
-        map.addSource("buffer-src", { type: "geojson", data: bufferPoly });
-        map.addLayer({
-            id: "buffer-layer",
-            type: "fill",
-            source: "buffer-src",
-            paint: { "fill-color": "#5FB3B3", "fill-opacity": 0.25 }
-        });
-
-        // zoom to buffer (opsional)
-        try {
-            const bbox = turf.bbox(bufferPoly);
-            map.fitBounds(bbox, { padding: 40, maxZoom: 15 });
-        } catch (err) { /* ignore */ }
-
-        // cek layer lain yang masuk buffer
-        const checkableLayers = ["Pendidikan", "Kesehatan", "Transportasi", "Sampah"];
-        const hasil = [];
-
-        checkableLayers.forEach(layerName => {
-            const data = layerData[layerName];
-            if (!data || !data.features) return;
-
-            data.features.forEach(f => {
-                const pt = turf.point(f.geometry.coordinates);
-                if (turf.booleanPointInPolygon(pt, bufferPoly)) {
-                    const nama = f.properties.NAMA || f.properties.Nama || f.properties.nama || "Tidak ada nama";
-                    hasil.push({ layer: layerName, nama });
-                }
-            });
-        });
-
-        const out = document.getElementById("isochroneResult");
-        out.innerHTML = "";
-        if (hasil.length === 0) {
-            out.innerHTML = "<li>Tidak ada titik lain dalam radius ini.</li>";
-            return;
-        }
-        hasil.forEach(h => out.innerHTML += `<li>${escapeHTML(h.layer)} → ${escapeHTML(h.nama)}</li>`);
-        });
 
 
         //legenda
